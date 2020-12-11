@@ -1,0 +1,52 @@
+<ion-menu side="start" menuId="main" contentId="main">
+    <ng-container *ngIf='usuario !== null'>
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Usuario</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content id='main'>
+            <ion-list class='text-center'>
+                <ion-item>
+                    <ion-icon name="mail" slot='start'></ion-icon>
+                    <ion-label> {{usuario.email}} </ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+        <ion-footer>
+            <ion-toolbar>
+                <ion-button color='danger' expand='block' (click)='cerrarSesion()'>Cerrar Sesión</ion-button>
+            </ion-toolbar>
+        </ion-footer>
+    </ng-container>
+</ion-menu>
+<div *ngIf='usuario !== null && qr.saldoActual !== null' class='ion-page' id="main">
+    <ion-header class="header-home">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button menu="main">
+                    <ion-icon name='person-circle-outline'></ion-icon>
+                </ion-menu-button>
+            </ion-buttons>
+            <ion-title>
+                Pago con Código Qr
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content [fullscreen]="true">
+        <ion-card class="cardMiCred">
+            <ion-card-content>
+                <ion-row class="linea">
+                    <h1>saldo:</h1>
+                    <h1 class="plata">${{qr.saldoActual.saldo}}</h1>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        <ion-button expand='block' color='warning' (click)="eliminarSaldo()">Eliminar saldo</ion-button>
+        <ion-button expand='block' color='primary' (click)="escanear()"><ion-icon name="qr-code-outline"></ion-icon> Cargar Crédito </ion-button>
+    </ion-content>
+    <ion-footer>
+        <ion-toolbar>
+        </ion-toolbar>
+    </ion-footer>
+</div>
