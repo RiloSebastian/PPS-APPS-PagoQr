@@ -77,6 +77,8 @@ export class QrService {
 				this.saldoActual[valor]++;
 				this.saldoActual.saldo += aumentoSaldo;
 				return this.actualizarSaldo(this.saldoActual);
+			} else{
+				this.comp.presentToastConMensajeYColor('sobrepasaste el limite de escaneos con este QR. ','danger');
 			}
 		}).catch(err => this.comp.presentToastConMensajeYColor(firebaseErrors(err), 'danger'));
 	}
